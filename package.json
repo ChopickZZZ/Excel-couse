@@ -1,0 +1,30 @@
+{
+  "name": "Excel-course",
+  "version": "1.0.0",
+  "description": "Js Excel-course",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-dev": "webpack",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChopickZZZ/Excel-couse.git"
+  },
+  "keywords": [
+    "js",
+    "excel"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChopickZZZ/Excel-couse/issues"
+  },
+  "homepage": "https://github.com/ChopickZZZ/Excel-couse#readme",
+  "private": true,
+  "devDependencies": {
+    "webpack": "^5.55.1",
+    "webpack-cli": "^4.8.0"
+  }
+}
