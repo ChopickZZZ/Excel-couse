@@ -18,9 +18,10 @@ export class Excel {
 			const $el = $.create('div', Component.className)
 			const component = new Component($el) //parameter extends DomListener
 
-			if (component.name) {
+			//DEBUG
+			/*if (component.name) {
 				window['c' + component.name] = component
-			}
+			}*/
 
 			$el.html(component.toHTML())
 			//Invoking our own method of appending nodes
