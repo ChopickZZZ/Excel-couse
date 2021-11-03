@@ -17,7 +17,7 @@ module.exports = {
 	devtool: isDev ? 'source-map' : false,
 	devServer: {
 		port: 3000,
-		hot: isDev
+		hot: isDev,
 	},
 	output: {
 		filename: fileName('js'),
@@ -31,7 +31,6 @@ module.exports = {
 		}
 	},
 	plugins: [
-		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			template: 'index.html'
 		}),
@@ -45,6 +44,17 @@ module.exports = {
 		}),
 		new MiniCssExtractPlugin({
 			filename: fileName('css')
+		}),
+		new CleanWebpackPlugin({
+			cleanOnceBeforeBuildPatterns: [
+				'**/*',
+				'!bundle.js',
+				'!bundle.js.map',
+				'!bundle.css',
+				'!bundle.css.map',
+				'!index.html',
+				'!favicon.ico',
+			],
 		})
 	],
 	module: {
