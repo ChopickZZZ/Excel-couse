@@ -49,6 +49,28 @@ class Dom {
 		this.$el.removeEventListener(eventType, callback)
 	}
 
+	get data() {
+		return this.$el.dataset
+	}
+
+	//method to return an instance of DOM
+	closest(selector) {
+		return $(this.$el.closest(selector))
+	}
+	//method to gain coordinates of instance
+	getCoords() {
+		return this.$el.getBoundingClientRect()
+	}
+	//Out own querySelectorAll
+	findAll(selector) {
+		return this.$el.querySelectorAll(selector)
+	}
+	css(styles = {}) {
+
+		Object.keys(styles)
+			.forEach(key => this.$el.style[key] = styles[key])
+
+	}
 }
 
 //Exporting function instead of class
