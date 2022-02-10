@@ -45,17 +45,6 @@ module.exports = {
 		new MiniCssExtractPlugin({
 			filename: fileName('css')
 		}),
-		new CleanWebpackPlugin({
-			cleanOnceBeforeBuildPatterns: [
-				'**/*',
-				'!bundle.js',
-				'!bundle.js.map',
-				'!bundle.css',
-				'!bundle.css.map',
-				'!index.html',
-				'!favicon.ico',
-			],
-		})
 	],
 	module: {
 		rules: [

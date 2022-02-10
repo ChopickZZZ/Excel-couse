@@ -19,7 +19,7 @@ class Dom {
 	}
 
 	text(text) {
-		if (typeof text === 'string') {
+		if (typeof text !== 'undefined') {
 			this.$el.textContent = text
 			return this
 		}
@@ -82,10 +82,14 @@ class Dom {
 		return this.$el.querySelectorAll(selector)
 	}
 	css(styles = {}) {
-
 		Object.keys(styles)
 			.forEach(key => this.$el.style[key] = styles[key])
-
+	}
+	getStyles(styles = {}) {
+		return Object.keys(styles).reduce((res, st) => {
+			res[st] = this.$el.style[st] || styles[st]
+			return res
+		}, {})
 	}
 	addClass(className) {
 		this.$el.classList.add(className)
@@ -108,6 +112,13 @@ class Dom {
 	focus() {
 		this.$el.focus()
 		return this
+	}
+	attr(name, value) {
+		if (value) {
+			this.$el.setAttribute(name, value)
+			return this
+		}
+		else return this.$el.getAttribute(name)
 	}
 }
 
