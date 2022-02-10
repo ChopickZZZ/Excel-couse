@@ -1,5 +1,6 @@
 import { $ } from '@core/dom'
 import { Emitter } from '../../core/Emitter'
+import { StoreSubscriber } from '../../core/storeSubscriber'
 
 export class Excel {
 	constructor(selector, options) {
@@ -8,6 +9,8 @@ export class Excel {
 		//Array of components(header, formula, toolbar, table)
 		this.components = options.components || []
 		this.emitter = new Emitter()
+		this.store = options.store
+		this.subscriber = new StoreSubscriber(this.store)
 	}
 
 	//creates content to insert in html 
@@ -16,7 +19,8 @@ export class Excel {
 		const $root = $.create('div', 'excel')
 
 		const componentOptions = {
-			emitter: this.emitter
+			emitter: this.emitter,
+			store: this.store
 		}
 		//Each Component is a Class
 		this.components = this.components.map(Component => {
@@ -42,9 +46,11 @@ export class Excel {
 		//Invoking our own method of appending nodes
 		this.$el.append(this.getRoot())
 
+		this.subscriber.subscribeComponents(this.components)
 		this.components.forEach(component => component.init())
 	}
 	destroy() {
+		this.subscriber.unsubscribeFromStore()
 		this.components.forEach(component => component.destroy())
 	}
 }
